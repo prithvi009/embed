@@ -26,8 +26,8 @@
     #ooa-checkout .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,78,.5),transparent);margin:18px 0}
 
     /* Whop embed area */
-    #ooa-checkout .whop-mount{background:#000;border-radius:12px;overflow:visible;min-height:400px;height:auto;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    #ooa-checkout .whop-checkout-embed{background:#000;border-radius:12px;min-height:400px;height:auto}
+    #ooa-checkout .whop-mount{background:#000;border-radius:12px;overflow:visible;height:auto;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    #ooa-checkout .whop-checkout-embed{background:#000;border-radius:12px;height:auto}
     #ooa-checkout .loading-note{font-size:12px;color:#c8cbd2;margin-top:8px;text-align:center}
     
     /* Override Whop embed button styling */
@@ -56,14 +56,8 @@
 
     /* Responsive adjustments for mobile */
     @media (max-width: 768px) {
-      #ooa-checkout .whop-mount{min-height:450px}
-      #ooa-checkout .whop-checkout-embed{min-height:450px}
       #ooa-checkout .wrap{margin:16px auto;padding:12px}
       #ooa-checkout .pad{padding:16px}
-    }
-    @media (max-width: 480px) {
-      #ooa-checkout .whop-mount{min-height:500px}
-      #ooa-checkout .whop-checkout-embed{min-height:500px}
     }
   </style>
 
