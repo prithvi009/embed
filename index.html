@@ -1,0 +1,206 @@
+<!-- OOA Checkout • Single-Block Embed (self-contained) -->
+<section id="ooa-checkout" style="--gold:#b8934e;--ink:#f5f6f7;--bg:#0a0b0d;--muted:#9aa0a6;--radius:16px;">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    #ooa-checkout{color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans"}
+    #ooa-checkout .wrap{max-width:720px;margin:32px auto;padding:16px}
+    #ooa-checkout .card{background:var(--bg);border:2px solid var(--gold);border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden}
+    #ooa-checkout .pad{padding:22px}
+    #ooa-checkout .heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    #ooa-checkout .heading h1{margin:0;font-size:clamp(20px,2.8vw,26px);font-weight:800}
+    #ooa-checkout .secure{font-size:12px;color:var(--muted)}
+    #ooa-checkout .sub{margin-top:6px;color:var(--muted);font-size:14px}
+
+    #ooa-checkout .products{display:grid;gap:12px;margin-top:18px}
+    #ooa-checkout .option{border:1px solid rgba(184,147,78,.4);border-radius:14px;background:rgba(255,255,255,.03)}
+    #ooa-checkout .option label{display:block;padding:16px;border-radius:14px;cursor:pointer}
+    #ooa-checkout .option input{margin-right:10px;transform:translateY(1px)}
+    #ooa-checkout .option h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
+    #ooa-checkout .pill{font-size:12px;border:1px solid var(--gold);padding:2px 8px;border-radius:999px;opacity:.9}
+    #ooa-checkout .price{margin-left:auto;font-weight:700}
+    #ooa-checkout .desc{margin:0;color:#d5d7db;font-size:13px;line-height:1.45}
+    #ooa-checkout .option.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(184,147,78,.25) inset}
+
+    #ooa-checkout .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,78,.5),transparent);margin:18px 0}
+
+    /* Whop embed area */
+    #ooa-checkout .whop-mount{background:#000;border-radius:12px;overflow:visible;min-height:400px;height:auto;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    #ooa-checkout .whop-checkout-embed{background:#000;border-radius:12px;min-height:400px;height:auto}
+    #ooa-checkout .loading-note{font-size:12px;color:#c8cbd2;margin-top:8px;text-align:center}
+    
+    /* Override Whop embed button styling */
+    #ooa-checkout .whop-mount iframe {
+      border-radius: 12px;
+    }
+    
+    /* Force gold color for Whop buttons */
+    #ooa-checkout .whop-mount button,
+    #ooa-checkout .whop-checkout-embed button {
+      background-color: #b8934e !important;
+      border-color: #b8934e !important;
+    }
+    
+    #ooa-checkout .whop-mount button:hover,
+    #ooa-checkout .whop-checkout-embed button:hover {
+      background-color: #a67d42 !important;
+      border-color: #a67d42 !important;
+    }
+
+    #ooa-checkout .summary{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:#d6d6d6}
+    #ooa-checkout .total{font-weight:700;color:#fff}
+
+    #ooa-checkout .final{margin-top:18px;text-align:center}
+    #ooa-checkout .final .due{font-size:18px;font-weight:700;color:#fff}
+
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+      #ooa-checkout .whop-mount{min-height:450px}
+      #ooa-checkout .whop-checkout-embed{min-height:450px}
+      #ooa-checkout .wrap{margin:16px auto;padding:12px}
+      #ooa-checkout .pad{padding:16px}
+    }
+    @media (max-width: 480px) {
+      #ooa-checkout .whop-mount{min-height:500px}
+      #ooa-checkout .whop-checkout-embed{min-height:500px}
+    }
+  </style>
+
+  <div class="wrap">
+    <section class="card">
+      <div class="pad">
+        <div class="heading">
+          <h1>Checkout</h1>
+          <span class="secure">Secure • SSL & Payment Encryption</span>
+        </div>
+        <p class="sub">Pick your plan. The checkout below updates instantly.</p>
+
+        <!-- Base selection -->
+        <div class="products" role="radiogroup" aria-label="Select Plan">
+          <div class="option" data-key="vip">
+            <label>
+              <input type="radio" name="ooa_product" value="vip" />
+              <h3>VIP <span class="pill">Best Value</span><span class="price">$97</span></h3>
+              <p class="desc">Everything in General plus extras. Preferred if you want the full experience.</p>
+            </label>
+          </div>
+          <div class="option" data-key="general">
+            <label>
+              <input type="radio" name="ooa_product" value="general" />
+              <h3>General <span class="pill">Popular</span><span class="price">$47</span></h3>
+              <p class="desc">Core access. Perfect if you're getting started.</p>
+            </label>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <!-- Checkout iframe (middle) -->
+        <div id="whop-checkout-mount" class="whop-mount"></div>
+        <div class="loading-note" id="ooa_loading" hidden>Loading secure checkout…</div>
+
+        <div class="sep"></div>
+
+        <!-- Summary -->
+        <div class="summary"><span id="ooa_summaryLabel">Selected: —</span><span class="total" id="ooa_summaryTotal">$—</span></div>
+
+        <div class="final">
+          <div id="ooa_finalTitle">VIP</div>
+          <div class="due" id="ooa_finalTotal">Total Due: $—</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ===== Plan/Price Matrix (your plans) =====
+    const OOA_PLAN = {
+      vip: 'plan_ENpQ5lYFypXpM',      // $97
+      general: 'plan_4ALWAt1sSD6QY'   // $47
+    };
+    const OOA_PRICE = { vip:97, general:47 };
+
+    // ===== UI refs =====
+    const _qs  = (sel) => document.querySelector(sel);
+    const _qsa = (sel) => Array.from(document.querySelectorAll(sel));
+    const UI = {
+      mount: _qs('#whop-checkout-mount'),
+      loading: _qs('#ooa_loading'),
+      radios: _qsa('input[name="ooa_product"]'),
+      options: _qsa('#ooa-checkout .option'),
+      sumLabel: _qs('#ooa_summaryLabel'),
+      sumTotal: _qs('#ooa_summaryTotal'),
+      finalTitle: _qs('#ooa_finalTitle'),
+      finalTotal: _qs('#ooa_finalTotal'),
+    };
+
+    // ===== Helpers =====
+    function getQueryPlan(){
+      const q = new URLSearchParams(location.search).get('plan');
+      return (q==='vip' || q==='general') ? q : null;
+    }
+    function currentPlan(){
+      const r = UI.radios.find(x=>x.checked);
+      return r ? r.value : 'vip';
+    }
+    function setActiveCard(){
+      UI.options.forEach(o=>{
+        const r = o.querySelector('input[type="radio"]');
+        o.classList.toggle('active', r && r.checked);
+      });
+    }
+
+    // Swap Whop embed by replacing the container node
+    function mountWhop(planId){
+      UI.loading.hidden = false;
+      const container = document.createElement('div');
+      container.className = 'whop-checkout-embed';
+      container.setAttribute('data-whop-checkout-plan-id', planId);
+      container.setAttribute('data-whop-checkout-theme', 'dark');
+      container.setAttribute('data-whop-checkout-theme-accent-color', 'gold');
+      container.setAttribute('data-whop-checkout-theme-background-color', '#0a0b0d');
+      container.setAttribute('data-whop-checkout-theme-text-color', '#f5f6f7');
+      container.setAttribute('data-whop-checkout-theme-border-radius', '12px');
+      container.setAttribute('data-whop-checkout-theme-font-family', 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif');
+
+      // You can also theme inputs/headings, iframes pick this up automatically.
+      UI.mount.replaceChildren(container);
+
+      // Hide loading once iframe appears
+      let tries = 0;
+      (function waitIframe(){
+        const hasIframe = !!UI.mount.querySelector('iframe');
+        if(hasIframe || tries++ > 20){ UI.loading.hidden = true; return; }
+        setTimeout(waitIframe, 120);
+      })();
+    }
+
+    function refresh(){
+      const plan = currentPlan();
+      const price = OOA_PRICE[plan] || 0;
+      UI.sumLabel.textContent  = 'Selected: ' + (plan==='vip' ? 'VIP' : 'General');
+      UI.sumTotal.textContent  = '$' + price;
+      UI.finalTitle.textContent = (plan==='vip' ? 'VIP' : 'General');
+      UI.finalTotal.textContent = 'Total Due: $' + price;
+      setActiveCard();
+      mountWhop(OOA_PLAN[plan]);
+    }
+
+    function init(){
+      // default selection (URL param overrides)
+      const desired = getQueryPlan() || 'vip';
+      const radio = UI.radios.find(r=> r.value === desired) || UI.radios[0];
+      if(radio) radio.checked = true;
+
+      UI.radios.forEach(r => r.addEventListener('change', refresh));
+      setActiveCard();
+      refresh();
+    }
+
+    if(document.readyState !== 'loading') init();
+    else document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+  <!-- Whop loader (keep this if your builder doesn't inject it in <head>) -->
+  <script async defer src="https://js.whop.com/static/checkout/loader.js"></script>
+</section>
