@@ -14,8 +14,9 @@
 
     #ooa-checkout .products{display:grid;gap:12px;margin-top:18px}
     #ooa-checkout .option{border:1px solid rgba(184,147,78,.4);border-radius:14px;background:rgba(255,255,255,.03)}
-    #ooa-checkout .option label{display:block;padding:16px;border-radius:14px;cursor:pointer}
-    #ooa-checkout .option input{margin-right:10px;transform:translateY(1px)}
+    #ooa-checkout .option label{display:flex;align-items:center;gap:12px;padding:16px;border-radius:14px;cursor:pointer}
+    #ooa-checkout .option input{margin:0;flex-shrink:0}
+    #ooa-checkout .option .content{flex:1}
     #ooa-checkout .option h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:8px}
     #ooa-checkout .pill{font-size:12px;border:1px solid var(--gold);padding:2px 8px;border-radius:999px;opacity:.9}
     #ooa-checkout .price{margin-left:auto;font-weight:700}
@@ -80,15 +81,19 @@
           <div class="option" data-key="vip">
             <label>
               <input type="radio" name="ooa_product" value="vip" />
-              <h3>VIP <span class="pill">Best Value</span><span class="price">$97</span></h3>
-              <p class="desc">Everything in General plus extras. Preferred if you want the full experience.</p>
+              <div class="content">
+                <h3>VIP <span class="pill">Best Value</span><span class="price">$97</span></h3>
+                <p class="desc">Everything in General plus extras. Preferred if you want the full experience.</p>
+              </div>
             </label>
           </div>
           <div class="option" data-key="general">
             <label>
               <input type="radio" name="ooa_product" value="general" />
-              <h3>General <span class="pill">Popular</span><span class="price">$47</span></h3>
-              <p class="desc">Core access. Perfect if you're getting started.</p>
+              <div class="content">
+                <h3>General <span class="pill">Popular</span><span class="price">$47</span></h3>
+                <p class="desc">Core access. Perfect if you're getting started.</p>
+              </div>
             </label>
           </div>
         </div>
