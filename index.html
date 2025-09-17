@@ -1,5 +1,5 @@
 <!-- OOA Checkout • Single-Block Embed (self-contained) -->
-<section id="ooa-checkout" style="--gold:#b8934e;--ink:#f5f6f7;--bg:#0a0b0d;--muted:#9aa0a6;--radius:16px;">
+<section id="ooa-checkout" style="--gold:#8AD255;--ink:#f5f6f7;--bg:#0a0b0d;--muted:#9aa0a6;--radius:16px;">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
@@ -13,7 +13,7 @@
     #ooa-checkout .sub{margin-top:6px;color:var(--muted);font-size:14px}
 
     #ooa-checkout .products{display:grid;gap:12px;margin-top:18px}
-    #ooa-checkout .option{border:1px solid rgba(184,147,78,.4);border-radius:14px;background:rgba(255,255,255,.03)}
+    #ooa-checkout .option{border:1px solid rgba(138,210,85,.4);border-radius:14px;background:rgba(255,255,255,.03)}
     #ooa-checkout .option label{display:flex;align-items:center;gap:12px;padding:16px;border-radius:14px;cursor:pointer}
     #ooa-checkout .option input{margin:0;flex-shrink:0}
     #ooa-checkout .option .content{flex:1}
@@ -21,9 +21,9 @@
     #ooa-checkout .pill{font-size:12px;border:1px solid var(--gold);padding:2px 8px;border-radius:999px;opacity:.9}
     #ooa-checkout .price{margin-left:auto;font-weight:700}
     #ooa-checkout .desc{margin:0;color:#d5d7db;font-size:13px;line-height:1.45}
-    #ooa-checkout .option.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(184,147,78,.25) inset}
+    #ooa-checkout .option.active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(138,210,85,.25) inset}
 
-    #ooa-checkout .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,78,.5),transparent);margin:18px 0}
+    #ooa-checkout .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(138,210,85,.5),transparent);margin:18px 0}
 
     /* Whop embed area */
     #ooa-checkout .whop-mount{background:#000;border-radius:12px;overflow:visible;height:auto;box-shadow:0 10px 30px rgba(0,0,0,.35)}
@@ -35,17 +35,17 @@
       border-radius: 12px;
     }
     
-    /* Force gold color for Whop buttons */
+    /* Force green color for Whop buttons */
     #ooa-checkout .whop-mount button,
     #ooa-checkout .whop-checkout-embed button {
-      background-color: #b8934e !important;
-      border-color: #b8934e !important;
+      background-color: #8AD255 !important;
+      border-color: #8AD255 !important;
     }
     
     #ooa-checkout .whop-mount button:hover,
     #ooa-checkout .whop-checkout-embed button:hover {
-      background-color: #a67d42 !important;
-      border-color: #a67d42 !important;
+      background-color: #7BC946 !important;
+      border-color: #7BC946 !important;
     }
 
     #ooa-checkout .summary{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:#d6d6d6}
@@ -66,7 +66,7 @@
       <div class="pad">
         <div class="heading">
           <h1>Select Ticket</h1>
-          <span class="secure">Secure • SSL & Payment Encryption</span>
+          <!-- <span class="secure">Secure • SSL & Payment Encryption</span> -->
         </div>
 
         <!-- Base selection -->
@@ -75,7 +75,7 @@
             <label>
               <input type="radio" name="ooa_product" value="vip" />
               <div class="content">
-                <h3>VIP Ticket to TJR's Combine Event <span class="pill">(Recommended)</span><span class="price">$97</span></h3>
+                <h3>VIP Ticket to TJR's Combine Event <span class="pill">Recommended</span><span class="price">$97</span></h3>
                 <p class="desc">Includes everything in General Access, exclusive pre-event strategy session, raffle entries and lifetime access to replays</p>
               </div>
             </label>
