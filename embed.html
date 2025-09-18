@@ -1,0 +1,191 @@
+<!-- Multi-Bundle Checkout Embed -->
+<div class="wd-overlay">
+  <div class="wd-modal" role="dialog" aria-label="Checkout with bundle options">
+
+    <!-- BUNDLE OPTIONS -->
+    <div class="wd-plan-options" role="radiogroup" aria-label="Choose your bundle">
+      <!-- VIP Ticket (Recommended) -->
+      <label class="wd-plan-card">
+        <input type="radio" name="wd_plan" value="vipticketrecommended" checked />
+        <div class="wd-plan-body">
+          <div class="wd-plan-title">VIP Ticket (Recommended)</div>
+          <div class="wd-plan-description">Everything in General Admission plus giveaways, private session and lifetime recording access</div>
+          <div class="wd-plan-price">$97</div>
+        </div>
+      </label>
+
+      <!-- General Admission -->
+      <label class="wd-plan-card">
+        <input type="radio" name="wd_plan" value="generaladmission" />
+        <div class="wd-plan-body">
+          <div class="wd-plan-title">General Admission</div>
+          <div class="wd-plan-description">3-day LIVE access, combine workbook, and an actionable framework to become profitable</div>
+          <div class="wd-plan-price">$47</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- CHECKOUT EMBEDS -->
+    <div id="whop-checkout-wrapper"></div>
+
+  </div>
+</div>
+
+<!-- Whop loader -->
+<script defer src="https://js.whop.com/static/checkout/loader.js"></script>
+
+<script>
+  (function () {
+    const wrapper = document.getElementById('whop-checkout-wrapper');
+    const bundleRadios = Array.from(document.querySelectorAll('input[name="wd_plan"]'));
+    
+    const planDefinitions = [
+      { 
+        radioValue: 'vipticketrecommended', 
+        planId: 'plan_ENpQ5lYFypXpM' 
+      },
+      { 
+        radioValue: 'generaladmission', 
+        planId: 'plan_4ALWAt1sSD6QY' 
+      }
+    ];
+    
+    function recreateCheckout() {
+      // Get selected plan
+      const selectedRadioValue = bundleRadios.find(r => r.checked)?.value;
+      const selectedPlan = planDefinitions.find(p => p.radioValue === selectedRadioValue) || planDefinitions[0];
+      
+      if (!selectedPlan) return;
+      
+      // Clear existing checkout
+      wrapper.innerHTML = '';
+      
+      // Create new checkout element
+      const checkoutDiv = document.createElement('div');
+      checkoutDiv.className = 'whop-checkout-embed';
+      checkoutDiv.setAttribute('data-whop-checkout-plan-id', selectedPlan.planId);
+      checkoutDiv.setAttribute('data-whop-checkout-theme', 'dark');
+      checkoutDiv.setAttribute('data-whop-checkout-theme-accent-color', 'green');
+      
+      
+      
+      checkoutDiv.setAttribute('data-whop-checkout-hide-tos', 'true');
+      
+      
+      wrapper.appendChild(checkoutDiv);
+      
+      // Mount Whop checkout (auto-sizes perfectly)
+      if (window.WhopCheckout) {
+        window.WhopCheckout.mount();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', recreateCheckout);
+    bundleRadios.forEach(r => r.addEventListener('change', recreateCheckout));
+  })();
+</script>
+
+<style>
+  :root{
+    --wd-accent: #10b981;
+    --wd-border: #374151;
+    --wd-bg: #000000;
+    --wd-text: #f9fafb;
+  }
+  
+  .wd-overlay{
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #000000;
+    color: var(--wd-text);
+  }
+  
+  .wd-modal{
+    width: 100%;
+    max-width: 600px;
+    background: var(--wd-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+  }
+
+  .wd-plan-options{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 24px 24px 12px;
+  }
+  
+  .wd-plan-card{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    border: 2px solid var(--wd-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .wd-plan-card:hover{
+    border-color: var(--wd-accent);
+  }
+  
+  .wd-plan-card input[type="radio"]{
+    appearance: none;
+    width: 18px; 
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--wd-border);
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  
+  .wd-plan-card input[type="radio"]:checked{
+    border-color: var(--wd-accent);
+  }
+  
+  .wd-plan-card input[type="radio"]:checked::after{
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--wd-accent);
+    border-radius: 50%;
+  }
+  
+  .wd-plan-card:has(input[type="radio"]:checked){
+    border-color: var(--wd-accent);
+    box-shadow: 0 0 0 1px var(--wd-accent) inset;
+  }
+  
+  .wd-plan-title{
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .wd-plan-description{
+    font-size: 14px;
+    color: #d1d5db;
+    margin-bottom: 4px;
+  }
+  
+  .wd-plan-addons{
+    font-size: 12px;
+    color: var(--wd-accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  
+  .wd-plan-price{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--wd-accent);
+  }
+  
+  #whop-checkout-wrapper{
+    padding: 0 24px 24px;
+  }
+</style>
